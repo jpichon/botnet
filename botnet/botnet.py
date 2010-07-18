@@ -20,18 +20,20 @@ from eliza import eliza
 from pyconireland import PyconIreland
 from gtalkbot import GTalkBot, botcommand
 from yahoo import YahooGeoPlanetSearch, YahooWeatherSearch, InvalidSearchError
+from translate import Translator
 
 class BotnetJabberClient(GTalkBot):
 
     BOT_USER = 'pycon.bot@gmail.com'
     BOT_PASS = 'pycon123'
-    
+
     def __init__(self):
         self.eliza = eliza()
         super(BotnetJabberClient,self).__init__(self.BOT_USER, self.BOT_PASS)
         self.geoPlanet = YahooGeoPlanetSearch()
         self.yahooWeather = YahooWeatherSearch()
         self.pyconIreland = PyconIreland()
+        self.translator = Translator()
 
     @botcommand
     def weather(self, mess, args):
@@ -75,4 +77,13 @@ class BotnetJabberClient(GTalkBot):
             forecast_result += model_forecasts.format(forecast['date'], forecast['condition'], forecast['high'], forecast['low'])
         
         return forecast_result
-    
+
+    @botcommand
+    def entofr(self, mess, args):
+        """Returns the French translation of an English word. Usage: entofr [Word in English]"""
+        return self.translator.entofr(args)
+
+    @botcommand
+    def frtoen(self, mess, args):
+        """Returns the English translation of a French word. Usage: frtoen [Word in French]"""
+        return self.translator.frtoen(args)

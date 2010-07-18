@@ -34,3 +34,13 @@ http://simplejson.googlecode.com/svn/tags/simplejson-2.1.0/docs/index.html
 
 Exchange-Rate API
 http://www.exchangerate-api.com/
+
+
+----------
+Required dependencies:
+python-xmpp
+python-simplejson
+
+To run main.py from the command-line you'll need to update your PYTHONPATH manually first.
+
+export PYTHONPATH=$PROJECT_DIR:$PROJECT_DIR/botnet:$PROJECT_DIR/deps
